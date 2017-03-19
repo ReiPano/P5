@@ -7,7 +7,7 @@ var emrat = ['rei', 'niki', 'alqi', 'xhuli' , 'coding_train'];
 var aktuali = 3;
 
 function preload(){
-  font = loadFont('./js/AvenirNextLTPro-Demi.otf')
+  font = loadFont('../js/AvenirNextLTPro-Demi.otf')
 }
 
 function setup(){
