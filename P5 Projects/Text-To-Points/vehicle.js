@@ -1,15 +1,22 @@
 
 
 function vehicle(x,y){
-  var currx = random(0,800);
-  var curry = random(0,400);
+  if (x > window.innerWidth / 2) {
+    var currx = random(window.innerWidth / 2 + 150 ,window.innerWidth / 2 + 250);
+  }
+
+  else {
+    var currx = random(window.innerWidth / 2 - 350 ,window.innerWidth / 2 - 250);
+  }
+  
+  var curry = random(100,200);
   this.pos = createVector(currx,curry);
   this.target = createVector(x,y);
   this.vel = p5.Vector.random2D();
   this.acc = createVector();
   this.r = 8;
-  this.maxS = 4;
-  this.maxF = 0.3;
+  this.maxS = 5;
+  this.maxF = 10;
 }
 
 vehicle.prototype.changeTarget = function(x,y){
