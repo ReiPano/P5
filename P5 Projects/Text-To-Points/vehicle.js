@@ -1,6 +1,6 @@
 
 
-function vehicle(x,y){
+function vehicle(x,y,type){
   if (x > window.innerWidth / 2) {
     var currx = random(window.innerWidth / 2 + 150 ,window.innerWidth / 2 + 250);
   }
@@ -9,14 +9,16 @@ function vehicle(x,y){
     var currx = random(window.innerWidth / 2 - 350 ,window.innerWidth / 2 - 250);
   }
   
+
   var curry = random(100,200);
   this.pos = createVector(currx,curry);
   this.target = createVector(x,y);
   this.vel = p5.Vector.random2D();
   this.acc = createVector();
-  this.r = 8;
+  this.r = 5.5;
   this.maxS = 5;
   this.maxF = 10;
+  this.type = type;
 }
 
 vehicle.prototype.changeTarget = function(x,y){
@@ -30,8 +32,25 @@ vehicle.prototype.update = function(){
 }
 
 vehicle.prototype.show = function(){
-  colorMode(HSB);
-  stroke(this.pos.x%255, this.pos.y%255, 255);
+  // colorMode(HSB);
+  // stroke(this.pos.x%255, this.pos.y%255, 255);
+
+  if(this.type == "hour") {
+    stroke(200,100,100);
+  }
+
+  if(this.type == "min") {
+    stroke(100,200,100);
+  }
+
+  if(this.type == "sec") {
+    stroke(100,100,200);
+  }
+
+  if(this.type == "colon") {
+    stroke(200,200,200);
+  }
+
   strokeWeight(this.r);
   point(this.pos.x , this.pos.y);
 }

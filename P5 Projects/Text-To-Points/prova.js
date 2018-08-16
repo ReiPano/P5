@@ -7,19 +7,15 @@ var minutesV = [];
 var secV = [];
 var colon1 = [];
 var colon2 = [];
-
 var timeChange = -1;
 var done = false;
-
 var factor = 36;
 var sizeFont = 10;
-
 var prevSec = 0;
 
 function preload() {
   font = loadFont('./js/AvenirNextLTPro-Demi.otf');
 }
-
 function setup() {
 
   createCanvas(window.innerWidth, window.innerHeight);
@@ -31,15 +27,15 @@ function setup() {
 
   prevSec = sec;
 
-  if( sec < 10 ) {
+  if (sec < 10) {
     sec = "0" + sec;
   }
 
-  if( min < 10 ) {
+  if (min < 10) {
     min = "0" + min;
   }
 
-  if( hour < 10 ) {
+  if (hour < 10) {
     hour = "0" + hour;
   }
 
@@ -57,30 +53,22 @@ function setup() {
   var points = font.textToPoints(col, window.innerWidth / 2 - (col.length * window.innerWidth / factor), window.innerHeight / 2, window.innerWidth / 4 - (col.length * sizeFont));
   addCol1(points);
   addCol2(points);
-  // var time = date.getHours().toString() + ":" + date.getMinutes().toString() + ":" + date.getSeconds().toString() ;
-  // var points = font.textToPoints(time, window.innerWidth / 2 - (time.length * window.innerWidth / 26), window.innerHeight / 2, window.innerWidth / 4 - (time.length * 10));
-
-  // for (var i = 0; i < points.length; i++) {
-  //   var temp = points[i];
-  //   var v = new vehicle(temp.x - 60, temp.y - window.innerHeight / 4);
-  //   vehicles.push(v);
-  // }
 }
 
 function draw() {
   clear();
   timeChange += 1;
   background('rgba(255,255,255,0.01)');
-  
+
   const currSec = new Date().getSeconds();
 
-  if(currSec > prevSec || currSec == "0") {
+  if (currSec > prevSec || currSec == "0") {
 
-    if(!done || currSec == 1) {
+    if (!done || currSec == 1) {
       changeSeconds();
     }
 
-    if(currSec == 0) {
+    if (currSec == 0) {
       done = true;
     }
     else {
@@ -88,7 +76,7 @@ function draw() {
     }
 
     prevSec = currSec;
-    
+
   }
 
   show();
@@ -138,8 +126,8 @@ function show() {
 
 function changeHour() {
   var date = new Date();
-  var time =  date.getHours().toString();
-  if( time < 10 ) {
+  var time = date.getHours().toString();
+  if (time < 10) {
     time = "0" + time;
   }
   var points = font.textToPoints(time, window.innerWidth / 2 - (time.length * window.innerWidth / factor), window.innerHeight / 2, window.innerWidth / 4 - (time.length * sizeFont));
@@ -148,12 +136,12 @@ function changeHour() {
 
 function changeMinutes() {
   var date = new Date();
-  var time =  date.getMinutes().toString();
-  if( time < 10 ) {
+  var time = date.getMinutes().toString();
+  if (time < 10) {
     time = "0" + time;
   }
 
-  if(time == '00') {
+  if (time == '00') {
     changeHour();
   }
 
@@ -163,11 +151,11 @@ function changeMinutes() {
 
 function changeSeconds() {
   var date = new Date();
-  var time =  date.getSeconds().toString();
-  if( time < 10 ) {
+  var time = date.getSeconds().toString();
+  if (time < 10) {
     time = "0" + time;
   }
-  if(time == '00') {
+  if (time == '00') {
     changeMinutes();
   }
   var points = font.textToPoints(time, window.innerWidth / 2 - (time.length * window.innerWidth / factor), window.innerHeight / 2, window.innerWidth / 4 - (time.length * sizeFont));
@@ -178,43 +166,43 @@ function changeSeconds() {
 function addHours(points) {
   hoursV = [];
   for (var i = 0; i < points.length; i++) {
-      var temp = points[i];
-      var v = new vehicle(temp.x - 170, temp.y - window.innerHeight / 4);
-      hoursV.push(v);
-    }
+    var temp = points[i];
+    var v = new vehicle(temp.x - 170, temp.y - window.innerHeight / 4, "hour");
+    hoursV.push(v);
+  }
 }
 
 function addMins(points) {
   minutesV = [];
   for (var i = 0; i < points.length; i++) {
-      var temp = points[i];
-      var v = new vehicle(temp.x - 35, temp.y - window.innerHeight / 4);
-      minutesV.push(v);
-    }
+    var temp = points[i];
+    var v = new vehicle(temp.x - 25, temp.y - window.innerHeight / 4, "min");
+    minutesV.push(v);
+  }
 }
 
 function addSec(points) {
   secV = [];
   for (var i = 0; i < points.length; i++) {
-      var temp = points[i];
-      var v = new vehicle(temp.x + 110, temp.y - window.innerHeight / 4);
-      secV.push(v);
-    }
+    var temp = points[i];
+    var v = new vehicle(temp.x + 115, temp.y - window.innerHeight / 4, "sec");
+    secV.push(v);
+  }
 }
 
 function addCol1(points) {
   for (var i = 0; i < points.length; i++) {
-      var temp = points[i];
-      var v = new vehicle(temp.x - 75, temp.y - window.innerHeight / 4);
-      colon1.push(v);
-    }
+    var temp = points[i];
+    var v = new vehicle(temp.x - 75, temp.y - window.innerHeight / 4, "colon");
+    colon1.push(v);
+  }
 }
 
 function addCol2(points) {
   for (var i = 0; i < points.length; i++) {
-      var temp = points[i];
-      var v = new vehicle(temp.x + 60, temp.y - window.innerHeight / 4);
-      colon2.push(v);
-    }
+    var temp = points[i];
+    var v = new vehicle(temp.x + 70, temp.y - window.innerHeight / 4, "colon");
+    colon2.push(v);
+  }
 }
 
